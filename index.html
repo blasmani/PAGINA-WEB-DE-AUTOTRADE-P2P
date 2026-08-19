@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AutoTrade P2P — Answer your Binance P2P chat automatically</title>
+<meta name="description" content="A Windows desktop assistant for Binance P2P merchants: replies to your order chat with your own templates, keeps an exportable order history and defends your rank in the ads list. Runs on your own PC.">
+<meta name="author" content="Blasmani Titi">
+<link rel="icon" href="assets/icono.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AutoTrade P2P — Your Binance P2P desk, on autopilot">
+<meta property="og:description" content="Replies to your order chat, keeps your records in order and defends your rank. Runs entirely on your own PC.">
+<meta property="og:image" content="assets/hero-en.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<header class="cabecera">
+  <div class="contenedor cabecera__fila">
+    <a class="marca" href="./"><img src="assets/icono.png" alt="AutoTrade P2P">AutoTrade P2P</a>
+    <nav class="cabecera__nav">
+      <a href="#que-hace" data-en="What it does" data-es="Qué hace">What it does</a>
+      <a href="#como-funciona" data-en="How it works" data-es="Cómo funciona">How it works</a>
+      <a href="#precio" data-en="Pricing" data-es="Precio">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <span class="idioma">
+        <button type="button" data-idioma="en" aria-pressed="true">EN</button>
+        <button type="button" data-idioma="es" aria-pressed="false">ES</button>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ------------------------------------------------------------------ portada -->
+<section class="portada">
+  <div class="contenedor portada__rejilla">
+    <div>
+      <span class="pastilla" data-en="For <b>Binance P2P</b> merchants · Windows 10 &amp; 11" data-es="Para comerciantes de <b>Binance P2P</b> · Windows 10 y 11">For <b>Binance P2P</b> merchants · Windows 10 &amp; 11</span>
+
+      <h1 data-en="Your P2P desk, <em>on autopilot</em>." data-es="Tu mesa P2P, <em>en piloto automático</em>.">Your P2P desk, <em>on autopilot</em>.</h1>
+
+      <p class="entradilla" data-en="AutoTrade P2P answers the chat of your orders, keeps your customer records in order and turns months of trading into a spreadsheet your accountant can actually use. It runs on your own PC — there is no account to create and no server in the middle." data-es="AutoTrade P2P responde el chat de tus órdenes, mantiene ordenados los datos de tus clientes y convierte meses de operaciones en una hoja de cálculo que tu contador puede usar de verdad. Funciona en tu propia PC: no hay cuenta que crear ni servidor de por medio.">AutoTrade P2P answers the chat of your orders, keeps your customer records in order and turns months of trading into a spreadsheet your accountant can actually use. It runs on your own PC — there is no account to create and no server in the middle.</p>
+
+      <div class="acciones">
+        <a class="boton boton--primario" href="https://apps.microsoft.com/detail/9PL6F67SSZV8">
+          <span data-en="Get it from Microsoft Store" data-es="Consíguelo en Microsoft Store">Get it from Microsoft Store</span>
+        </a>
+        <a class="boton boton--fantasma" href="#como-funciona" data-en="See how it works" data-es="Ver cómo funciona">See how it works</a>
+      </div>
+
+      <!--
+        AVISO TEMPORAL. Borrar ESTA línea en cuanto la app pase la certificación: hasta
+        entonces el enlace de arriba devuelve un 404 y prometer una descarga que no existe es
+        peor que decir la verdad.
+      -->
+      <p class="nota-boton" data-en="⏳ Currently in Microsoft Store review. The download link goes live the moment it is approved." data-es="⏳ Ahora mismo en revisión de Microsoft Store. El enlace de descarga funcionará en cuanto la aprueben.">⏳ Currently in Microsoft Store review. The download link goes live the moment it is approved.</p>
+    </div>
+
+    <img class="portada__imagen" src="assets/hero-en.png"
+         data-img-en="assets/hero-en.png" data-img-es="assets/hero-es.png"
+         data-alt-en="AutoTrade P2P: instant replies, chat and rank defence"
+         data-alt-es="AutoTrade P2P: respuestas instantáneas, chat y defensa del puesto"
+         alt="AutoTrade P2P" width="1376" height="768">
+  </div>
+</section>
+
+<!------------------------------------------------------------------- qué hace -->
+<section id="que-hace">
+  <div class="contenedor">
+    <p class="seccion__rotulo" data-en="What it does" data-es="Qué hace">What it does</p>
+    <h2 data-en="Three jobs you stop doing by hand." data-es="Tres trabajos que dejas de hacer a mano.">Three jobs you stop doing by hand.</h2>
+    <p class="seccion__intro" data-en="Not a bot that trades for you. A desk assistant that handles the repetitive part and leaves every decision to you." data-es="No es un bot que opere por ti. Es un asistente que se ocupa de la parte repetitiva y te deja a ti todas las decisiones.">Not a bot that trades for you. A desk assistant that handles the repetitive part and leaves every decision to you.</p>
+
+    <div class="rejilla rejilla--3">
+      <article class="tarjeta">
+        <div class="tarjeta__icono">💬</div>
+        <h3 data-en="Answers the chat for you" data-es="Responde el chat por ti">Answers the chat for you</h3>
+        <p data-en="Write your own message templates and choose when each one is sent: when an order opens, when the buyer marks it paid, when a payment proof arrives, when someone asks who the account belongs to. A trigger is marked as handled <b>before</b> the message goes out, so a customer never gets the same notice twice." data-es="Escribe tus propias plantillas y elige cuándo se envía cada una: al abrirse una orden, cuando el comprador la marca como pagada, cuando llega un comprobante, cuando preguntan a nombre de quién está la cuenta. Un disparador se marca como atendido <b>antes</b> de que salga el mensaje, así que un cliente jamás recibe el mismo aviso dos veces.">Answers the chat for you</p>
+      </article>
+
+      <article class="tarjeta">
+        <div class="tarjeta__icono">📊</div>
+        <h3 data-en="Keeps a real order history" data-es="Guarda un historial de verdad">Keeps a real order history</h3>
+        <p data-en="Every order, with the counterparty's verified name, the payment method used and the detail you captured in the chat. Filter by date, asset, currency, status or order-number range, and download it as CSV or as a formatted Excel file with frozen headers, filters and totals." data-es="Cada orden, con el nombre verificado de la contraparte, el método de pago usado y el dato que capturaste en el chat. Filtra por fecha, activo, moneda, estado o rango de número de orden, y descárgalo en CSV o en un Excel con encabezados fijos, filtros y totales.">Keeps a real order history</p>
+      </article>
+
+      <article class="tarjeta">
+        <div class="tarjeta__icono">📈</div>
+        <h3 data-en="Defends your rank" data-es="Defiende tu puesto">Defends your rank</h3>
+        <p data-en="The pricing engine watches where your ad sits in the list and moves its price only when it actually falls out of the band you set — never chasing an exact position, which is what looks like price manipulation. It never crosses the price limits you write." data-es="El motor de precios vigila dónde está tu anuncio en la lista y mueve el precio solo cuando de verdad se sale de la banda que fijaste; nunca persigue un puesto exacto, que es lo que parece manipulación de precios. Y nunca cruza los límites que escribas.">Defends your rank</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-------------------------------------------------------------- cómo funciona -->
+<section id="como-funciona">
+  <div class="contenedor">
+    <p class="seccion__rotulo" data-en="How it works" data-es="Cómo funciona">How it works</p>
+    <h2 data-en="Four steps, once." data-es="Cuatro pasos, una sola vez.">Four steps, once.</h2>
+    <p class="seccion__intro" data-en="No account to create on our side, because there is no our side: the app talks straight to the official Binance API with a key you create yourself." data-es="No hay ninguna cuenta que crear en nuestro lado, porque no hay nuestro lado: la app habla directamente con la API oficial de Binance mediante una clave que creas tú.">No account to create on our side.</p>
+
+    <div class="rejilla rejilla--4">
+      <article class="tarjeta">
+        <div class="paso__numero">1</div>
+        <h3 data-en="Install it" data-es="Instálala">Install it</h3>
+        <p data-en="From Microsoft Store, on Windows 10 or 11. It opens in its own window." data-es="Desde Microsoft Store, en Windows 10 u 11. Se abre en su propia ventana.">From Microsoft Store, on Windows 10 or 11.</p>
+      </article>
+      <article class="tarjeta">
+        <div class="paso__numero">2</div>
+        <h3 data-en="Paste your API key" data-es="Pega tu clave API">Paste your API key</h3>
+        <p data-en="Create it in your own Binance account and paste it into Settings. It is encrypted on your PC and never leaves it." data-es="La creas en tu propia cuenta de Binance y la pegas en Configuración. Se cifra en tu PC y nunca sale de ahí.">Create it in your own Binance account.</p>
+      </article>
+      <article class="tarjeta">
+        <div class="paso__numero">3</div>
+        <h3 data-en="Write your messages" data-es="Escribe tus mensajes">Write your messages</h3>
+        <p data-en="Adjust the ready-made templates or write your own, and pick which trigger fires each one. You can try it in rehearsal mode first." data-es="Ajusta las plantillas que vienen hechas o escribe las tuyas, y elige qué disparador lanza cada una. Puedes probarlo primero en modo ensayo.">Adjust the ready-made templates or write your own.</p>
+      </article>
+      <article class="tarjeta">
+        <div class="paso__numero">4</div>
+        <h3 data-en="Turn it on" data-es="Enciéndelo">Turn it on</h3>
+        <p data-en="Nothing runs until you switch it on, and it remembers the choice. Close the window and it keeps answering from the tray." data-es="Nada se pone en marcha hasta que lo enciendes, y recuerda esa decisión. Cierra la ventana y sigue respondiendo desde la bandeja.">Nothing runs until you switch it on.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!--------------------------------------------------------------- tú mandas -->
+<section>
+  <div class="contenedor">
+    <div class="franja">
+      <p class="seccion__rotulo" data-en="You stay in control" data-es="Tú mantienes el control">You stay in control</p>
+      <h2 data-en="What it will never do." data-es="Lo que nunca va a hacer.">What it will never do.</h2>
+      <p class="seccion__intro" data-en="This is the part most people ask about first, so it is written down before you install anything." data-es="Es lo que casi todo el mundo pregunta primero, así que está escrito antes de que instales nada.">This is the part most people ask about first.</p>
+
+      <ul class="lista-limpia">
+        <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#f6465d" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg><span data-en="<b>It never releases crypto.</b> Reviewing a payment proof is a human decision and it stays one: your Binance fund password is not stored anywhere, not even in memory, so no automated process could release funds even if it wanted to." data-es="<b>Nunca libera cripto.</b> Revisar un comprobante es una decisión humana y así se queda: tu contraseña de fondos de Binance no se guarda en ninguna parte, ni siquiera en memoria, así que ningún proceso automático podría liberar fondos aunque quisiera."><b>It never releases crypto.</b></span></li>
+        <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#f6465d" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg><span data-en="<b>It does not buy, sell, transfer, deposit or withdraw.</b> It is not a wallet and not an exchange. It never takes custody of your funds." data-es="<b>No compra, no vende, no transfiere, no deposita ni retira.</b> No es un monedero ni un exchange. Nunca tiene la custodia de tus fondos."><b>It does not buy, sell or transfer.</b></span></li>
+        <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#f6465d" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg><span data-en="<b>It gives no investment advice.</b> It shows no market prices for speculation and tells you nothing about what to trade." data-es="<b>No da consejos de inversión.</b> No enseña precios de mercado para especular ni te dice qué operar."><b>It gives no investment advice.</b></span></li>
+        <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#0ecb81" stroke-width="2.4" stroke-linecap="round"><path d="m20 6-11 11-5-5"/></svg><span data-en="<b>Only the official Binance API.</b> No scraping and no session cookies — that is what keeps your account safe." data-es="<b>Solo la API oficial de Binance.</b> Sin scraping y sin cookies de sesión: eso es lo que mantiene tu cuenta a salvo."><b>Only the official Binance API.</b></span></li>
+        <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#0ecb81" stroke-width="2.4" stroke-linecap="round"><path d="m20 6-11 11-5-5"/></svg><span data-en="<b>Your data stays on your PC.</b> We run no servers, so nothing the app reads or writes ever reaches us." data-es="<b>Tus datos se quedan en tu PC.</b> No operamos servidores, así que nada de lo que la app lee o escribe llega hasta nosotros."><b>Your data stays on your PC.</b></span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!------------------------------------------------------------------- precio -->
+<section id="precio">
+  <div class="contenedor">
+    <p class="seccion__rotulo" data-en="Pricing" data-es="Precio">Pricing</p>
+    <h2 data-en="One subscription. Seven days to decide." data-es="Una suscripción. Siete días para decidir.">One subscription. Seven days to decide.</h2>
+    <p class="seccion__intro" data-en="Billed by Microsoft through the Store, in your own currency. Cancel any time from your Microsoft account." data-es="Lo cobra Microsoft a través de la Store, en tu propia moneda. Se cancela cuando quieras desde tu cuenta Microsoft.">Billed by Microsoft through the Store.</p>
+
+    <div class="precio">
+      <div class="precio__cifra">24.99 <span>USD / <span data-en="month" data-es="mes">month</span></span></div>
+      <p class="precio__prueba" data-en="First 7 days free" data-es="Los primeros 7 días, gratis">First 7 days free</p>
+      <p style="color:var(--texto-suave);margin:0 0 22px" data-en="Everything included: chat automation, full order history with CSV and Excel export, and the pricing engine. No tiers, no add-ons." data-es="Todo incluido: automatización del chat, historial completo con exportación a CSV y Excel, y el motor de precios. Sin planes ni extras.">Everything included.</p>
+      <a class="boton boton--primario" href="https://apps.microsoft.com/detail/9PL6F67SSZV8" data-en="Start the free trial" data-es="Empezar la prueba gratis">Start the free trial</a>
+    </div>
+  </div>
+</section>
+
+<!---------------------------------------------------------------------- faq -->
+<section id="faq">
+  <div class="contenedor">
+    <p class="seccion__rotulo">FAQ</p>
+    <h2 data-en="Questions, answered." data-es="Preguntas, respondidas.">Questions, answered.</h2>
+
+    <details>
+      <summary data-en="Do I need to give you my Binance password?" data-es="¿Tengo que darte mi contraseña de Binance?">Do I need to give you my Binance password?</summary>
+      <p data-en="No, and you should never give it to anyone. AutoTrade P2P uses an <b>API key</b> that you create yourself inside your own Binance account, with the permissions you choose. It is encrypted on your PC with Windows DPAPI and tied to your Windows account: copying the files to another computer does not let anyone read them." data-es="No, y no deberías dársela a nadie. AutoTrade P2P usa una <b>clave API</b> que creas tú dentro de tu propia cuenta de Binance, con los permisos que tú elijas. Se guarda cifrada en tu PC con Windows DPAPI y atada a tu cuenta de Windows: copiar los archivos a otra computadora no le sirve a nadie para leerlos.">No.</p>
+    </details>
+
+    <details>
+      <summary data-en="Can it release crypto for me?" data-es="¿Puede liberar cripto por mí?">Can it release crypto for me?</summary>
+      <p data-en="No, and that is deliberate. Checking that a payment really arrived is a judgement call, and the app is built so it cannot make it: your Binance fund password is never stored, so nothing automatic has what it would need." data-es="No, y es a propósito. Comprobar que un pago llegó de verdad es un juicio humano, y la app está hecha para no poder hacerlo: tu contraseña de fondos de Binance no se guarda nunca, así que nada automático tiene con qué.">No.</p>
+    </details>
+
+    <details>
+      <summary data-en="Is it affiliated with Binance?" data-es="¿Tiene relación con Binance?">Is it affiliated with Binance?</summary>
+      <p data-en="No. AutoTrade P2P is an independent product and is not endorsed by, sponsored by or affiliated with Binance. It simply uses Binance's official public API with your own key." data-es="No. AutoTrade P2P es un producto independiente y no está respaldado, patrocinado ni afiliado a Binance. Simplemente usa la API pública oficial de Binance con tu propia clave.">No.</p>
+    </details>
+
+    <details>
+      <summary data-en="Does it work while the window is closed?" data-es="¿Funciona con la ventana cerrada?">Does it work while the window is closed?</summary>
+      <p data-en="Yes. Closing the window sends it to the system tray and the engine keeps answering your order chat. To quit completely, right-click the tray icon and choose Exit." data-es="Sí. Al cerrar la ventana se va a la bandeja del sistema y el motor sigue respondiendo el chat de tus órdenes. Para cerrarla del todo, clic derecho en el icono de la bandeja y «Salir».">Yes.</p>
+    </details>
+
+    <details>
+      <summary data-en="What languages does the app speak?" data-es="¿En qué idiomas está la app?">What languages does the app speak?</summary>
+      <p data-en="Eight: English, Spanish, Portuguese, Chinese (Simplified), Hindi, Russian, French and German. It follows your Windows language and you can change it from the side menu." data-es="Ocho: inglés, español, portugués, chino simplificado, hindi, ruso, francés y alemán. Sigue el idioma de Windows y puedes cambiarlo desde el menú lateral.">Eight.</p>
+    </details>
+
+    <details>
+      <summary data-en="How do I send a suggestion or report a problem?" data-es="¿Cómo mando una sugerencia o aviso de un problema?">How do I send a suggestion or report a problem?</summary>
+      <p data-en="There is a <b>Suggestions</b> section in the app's side menu that writes the message for you and opens Telegram, where you can attach screenshots. Or write directly to <a href='https://t.me/AutoTradeP2P'>t.me/AutoTradeP2P</a>." data-es="Hay una sección de <b>Sugerencias</b> en el menú lateral de la app que te escribe el mensaje y abre Telegram, donde puedes adjuntar capturas. O escribe directamente a <a href='https://t.me/AutoTradeP2P'>t.me/AutoTradeP2P</a>.">Suggestions section in the app.</p>
+    </details>
+  </div>
+</section>
+
+</main>
+
+<footer class="pie">
+  <div class="contenedor">
+    <div class="pie__rejilla">
+      <div>
+        <a class="marca" href="./"><img src="assets/icono.png" alt="">AutoTrade P2P</a>
+        <p data-en="A Windows desktop assistant for Binance P2P merchants. Runs on your own PC." data-es="Un asistente de escritorio para comerciantes de Binance P2P. Funciona en tu propia PC.">A Windows desktop assistant for Binance P2P merchants.</p>
+      </div>
+      <div>
+        <h4 data-en="Product" data-es="Producto">Product</h4>
+        <ul>
+          <li><a href="#que-hace" data-en="What it does" data-es="Qué hace">What it does</a></li>
+          <li><a href="#precio" data-en="Pricing" data-es="Precio">Pricing</a></li>
+          <li><a href="https://apps.microsoft.com/detail/9PL6F67SSZV8" data-en="Microsoft Store" data-es="Microsoft Store">Microsoft Store</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-en="Legal &amp; contact" data-es="Legal y contacto">Legal &amp; contact</h4>
+        <ul>
+          <li><a href="privacy.html" data-en="Privacy Policy" data-es="Política de privacidad">Privacy Policy</a></li>
+          <li><a href="terms.html" data-en="Terms &amp; Conditions" data-es="Términos y condiciones">Terms &amp; Conditions</a></li>
+          <li><a href="https://t.me/AutoTradeP2P">Telegram</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pie__abajo">
+      <span>© 2026 AutoTrade P2P · Blasmani Titi</span>
+      <span data-en="Made for Binance P2P merchants" data-es="Hecho para comerciantes de Binance P2P">Made for Binance P2P merchants</span>
+    </div>
+
+    <p class="pie__descargo" data-en="AutoTrade P2P is an independent product and is not endorsed by, sponsored by or affiliated with Binance. “Binance” is a trademark of its respective owner. Trading cryptocurrency carries risk; this app provides no investment advice and never executes trades or moves funds on your behalf." data-es="AutoTrade P2P es un producto independiente y no está respaldado, patrocinado ni afiliado a Binance. «Binance» es una marca de su respectivo propietario. Operar con criptomonedas conlleva riesgo; esta app no da consejos de inversión y nunca ejecuta operaciones ni mueve fondos por ti.">AutoTrade P2P is an independent product and is not affiliated with Binance.</p>
+  </div>
+</footer>
+
+<script src="assets/idioma.js"></script>
+</body>
+</html>

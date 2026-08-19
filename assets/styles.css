@@ -1,0 +1,326 @@
+/*
+ * AutoTrade P2P — sitio web.
+ *
+ * La paleta NO es la de LocalClip: es la de la propia app, medida sobre el Portal del
+ * Comerciante de Binance el 2026-08-11 y ya escrita en `packages/web/src/estilos.css`.
+ * Un sitio que anuncia una herramienta de Binance P2P con otros colores parece de otro
+ * producto, y lo primero que hace quien llega es comparar la web con las capturas.
+ */
+:root {
+  --marco: #0b0e11;
+  --superficie: #181a20;
+  --superficie-2: #1e2329;
+  --borde: #2b3139;
+  --texto: #eaecef;
+  --texto-suave: #9c9c9c;
+  --amarillo: #fcd535;
+  --amarillo-logo: #f0b90b;
+  --sobre-amarillo: #202630;
+  --verde: #0ecb81;
+  --rojo: #f6465d;
+  --ancho: 1120px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--marco);
+  color: var(--texto);
+  font-family: Manrope, 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--amarillo-logo); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.contenedor { width: 100%; max-width: var(--ancho); margin: 0 auto; padding: 0 24px; }
+
+/* ------------------------------------------------------------------ cabecera */
+
+.cabecera {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(11, 14, 17, 0.86);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--borde);
+}
+.cabecera__fila {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 64px;
+}
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 17px;
+  color: var(--texto);
+  letter-spacing: -0.01em;
+}
+.marca:hover { text-decoration: none; }
+.marca img { width: 28px; height: 28px; border-radius: 6px; }
+.cabecera__nav { margin-left: auto; display: flex; align-items: center; gap: 22px; }
+.cabecera__nav a { color: var(--texto-suave); font-size: 14px; font-weight: 500; }
+.cabecera__nav a:hover { color: var(--texto); text-decoration: none; }
+
+/* El conmutador de idioma: dos mitades de una sola pastilla, como en LocalClip. */
+.idioma {
+  display: inline-flex;
+  border: 1px solid var(--borde);
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--superficie);
+}
+.idioma button {
+  appearance: none;
+  border: 0;
+  background: none;
+  color: var(--texto-suave);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+.idioma button[aria-pressed='true'] { background: var(--amarillo); color: var(--sobre-amarillo); }
+
+/* ------------------------------------------------------------------- portada */
+
+.portada { padding: 72px 0 40px; }
+.portada__rejilla { display: grid; gap: 44px; align-items: center; }
+@media (min-width: 900px) { .portada__rejilla { grid-template-columns: 1.05fr 1fr; } }
+
+.pastilla {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--superficie-2);
+  border: 1px solid var(--borde);
+  color: var(--texto-suave);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 999px;
+  margin-bottom: 20px;
+}
+.pastilla b { color: var(--amarillo); font-weight: 700; }
+
+h1 {
+  font-size: clamp(2.1rem, 5vw, 3.4rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin: 0 0 18px;
+  font-weight: 800;
+}
+h1 em { font-style: normal; color: var(--amarillo); }
+
+.entradilla { font-size: 1.09rem; color: var(--texto-suave); margin: 0 0 28px; max-width: 34rem; }
+
+.acciones { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+
+.boton {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  border-radius: 8px;
+  padding: 12px 22px;
+  font-weight: 700;
+  font-size: 15px;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+.boton:hover { text-decoration: none; }
+.boton--primario { background: var(--amarillo); color: var(--sobre-amarillo); }
+.boton--primario:hover { background: var(--amarillo-logo); }
+.boton--fantasma { border-color: var(--borde); color: var(--texto); background: var(--superficie); }
+.boton--fantasma:hover { border-color: var(--texto-suave); }
+
+.nota-boton { font-size: 12.5px; color: var(--texto-suave); margin-top: 14px; }
+
+.portada__imagen {
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid var(--borde);
+  display: block;
+  background: #fff;
+}
+
+/* ------------------------------------------------------------------ secciones */
+
+section { padding: 56px 0; }
+.seccion__rotulo {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--amarillo-logo);
+  margin: 0 0 10px;
+}
+h2 {
+  font-size: clamp(1.6rem, 3.4vw, 2.25rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin: 0 0 14px;
+  font-weight: 800;
+}
+.seccion__intro { color: var(--texto-suave); max-width: 46rem; margin: 0 0 34px; }
+
+.rejilla { display: grid; gap: 18px; }
+@media (min-width: 700px) { .rejilla--2 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 860px) { .rejilla--3 { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 860px) { .rejilla--4 { grid-template-columns: repeat(4, 1fr); } }
+
+.tarjeta {
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  padding: 24px;
+}
+.tarjeta h3 { margin: 0 0 8px; font-size: 1.06rem; font-weight: 700; letter-spacing: -0.01em; }
+.tarjeta p { margin: 0; color: var(--texto-suave); font-size: 15px; }
+.tarjeta__icono {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  background: var(--superficie-2);
+  border: 1px solid var(--borde);
+  margin-bottom: 14px;
+  font-size: 18px;
+}
+
+.paso__numero {
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  background: var(--amarillo);
+  color: var(--sobre-amarillo);
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 14px;
+  margin-bottom: 14px;
+}
+
+/* Franja de límites: lo que la app NO hace. Va en su propio bloque a propósito. */
+.franja {
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: 16px;
+  padding: 34px;
+}
+.lista-limpia { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.lista-limpia li { display: flex; gap: 11px; align-items: flex-start; color: var(--texto-suave); }
+.lista-limpia svg { flex: none; margin-top: 4px; }
+
+/* --------------------------------------------------------------------- precio */
+
+.precio {
+  background: linear-gradient(180deg, var(--superficie-2), var(--superficie));
+  border: 1px solid var(--borde);
+  border-radius: 16px;
+  padding: 36px;
+  text-align: center;
+  max-width: 30rem;
+  margin: 0 auto;
+}
+.precio__cifra { font-size: 3rem; font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
+.precio__cifra span { font-size: 1rem; font-weight: 600; color: var(--texto-suave); }
+.precio__prueba { color: var(--verde); font-weight: 700; margin: 10px 0 18px; }
+
+/* ------------------------------------------------------------------------ faq */
+
+details {
+  border-bottom: 1px solid var(--borde);
+  padding: 18px 0;
+}
+details summary {
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1.02rem;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+}
+details summary::-webkit-details-marker { display: none; }
+details summary::after { content: '+'; color: var(--amarillo-logo); font-size: 1.3rem; font-weight: 400; }
+details[open] summary::after { content: '−'; }
+details p { color: var(--texto-suave); margin: 12px 0 0; font-size: 15px; }
+
+/* ---------------------------------------------------------------------- legal */
+
+.legal { padding: 48px 0 16px; }
+.legal h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 6px; }
+.legal__fecha { color: var(--texto-suave); font-size: 14px; margin: 0 0 32px; }
+.legal h2 { font-size: 1.22rem; margin: 34px 0 10px; }
+.legal p, .legal li { color: #c9cdd3; }
+.legal ul { padding-left: 20px; }
+.legal li { margin-bottom: 8px; }
+.legal__volver { color: var(--texto-suave); font-size: 14px; display: inline-block; margin-bottom: 24px; }
+.legal__aviso {
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-left: 3px solid var(--amarillo);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin: 24px 0;
+}
+.legal__aviso p { margin: 0; }
+
+/* ------------------------------------------------------------------------ pie */
+
+.pie { border-top: 1px solid var(--borde); padding: 40px 0 56px; margin-top: 40px; }
+.pie__rejilla { display: grid; gap: 26px; }
+@media (min-width: 760px) { .pie__rejilla { grid-template-columns: 2fr 1fr 1fr; } }
+.pie p { color: var(--texto-suave); font-size: 14.5px; margin: 10px 0 0; max-width: 26rem; }
+.pie h4 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--texto-suave); margin: 0 0 12px; }
+.pie ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
+.pie ul a { color: var(--texto); font-size: 14.5px; }
+.pie__abajo {
+  border-top: 1px solid var(--borde);
+  margin-top: 32px;
+  padding-top: 22px;
+  color: var(--texto-suave);
+  font-size: 13px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+/*
+ * El descargo de Binance va en el pie y en cuerpo pequeño, pero NO escondido: esta app usa
+ * la API de Binance y no tiene ninguna relacion con Binance. Decirlo evita que alguien crea
+ * que compra un producto oficial.
+ */
+.pie__descargo { color: #6d7580; font-size: 12.5px; max-width: 46rem; margin-top: 14px; }
+
+/*
+ * Pantallas estrechas: se van los enlaces de seccion, se queda lo que hace falta.
+ *
+ * Medido en el panel a 559 px: «What it does» se partia en dos lineas y el conmutador EN/ES
+ * quedaba cortado por el borde. Los enlaces del menu son atajos a secciones que estan justo
+ * debajo -se llega bajando-, pero el conmutador de idioma no tiene sustituto: si no cabe, el
+ * visitante que no lee ingles no tiene forma de cambiarlo.
+ */
+@media (max-width: 720px) {
+  .cabecera__nav a { display: none; }
+  .marca { font-size: 15px; }
+  .marca img { width: 24px; height: 24px; }
+  .contenedor { padding: 0 18px; }
+  .portada { padding: 44px 0 24px; }
+  .franja, .precio { padding: 24px; }
+  .tarjeta { padding: 20px; }
+}
