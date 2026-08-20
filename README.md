@@ -31,6 +31,52 @@ como una tira y una vertical empuja el resto de la pagina fuera de la primera pa
 Y guardala en JPEG salvo que necesite transparencia: la actual pasaba de 1.073 KB en PNG a
 159 KB en JPEG de calidad 92 sin diferencia visible.
 
+## El diseño: «Mesa de Control»
+
+Rediseñado el 2026-08-20. El dueño pidió **premium estilo Apple**, **cero emojis** e
+**iconos premium en toda la página**. La idea que lo sostiene: esto es una herramienta que
+toca dinero de verdad, así que lo premium aquí es la **precisión**, no el espectáculo. Nada
+rebota, nada se levanta al pasar el ratón, nada late en bucle.
+
+Cuatro reglas que conviene no romper sin querer:
+
+1. **El amarillo relleno aparece UNA vez por pantalla.** Antes estaba a la vez en el botón,
+   en el conmutador de idioma y en los cuatro círculos de los pasos. Cuatro acentos a la vez
+   no son un acento. El conmutador activo se marca ahora con un subrayado de 2px.
+2. **Los paneles separan celdas con `border-top` / `border-left`, nunca con `gap: 1px`.**
+   Con `gap` de 1px, en Windows al 125 % o 150 % de escalado unos filetes salen a 1 píxel y
+   otros a 2, y el panel se ve descuadrado.
+3. **Suelo de 12px** para cualquier texto, y de **44px** para cualquier cosa que se pueda
+   pulsar. La única excepción es el enlace `t.me/…` que va dentro de una frase del FAQ: WCAG
+   2.5.8 exceptúa expresamente los enlaces en línea.
+4. **El revelado al hacer scroll es CSS puro** (`animation-timeline: view()`), metido dentro
+   de `@supports` **y** de `prefers-reduced-motion: no-preference`. Con un observador de
+   JavaScript, si el observador no arranca el contenido se queda invisible y no hay ningún
+   error en consola. Este proyecto ya tiene tres causas documentadas de pantalla en blanco
+   silenciosa; no hacía falta una cuarta.
+
+### El icono nunca va dentro de un texto traducido
+
+`idioma.js` hace `n.innerHTML = n.getAttribute('data-' + idioma)` sobre **cada** elemento con
+`[data-en]`. Un `<svg>` metido dentro desaparece la primera vez que alguien pulsa ES y ya no
+vuelve, **sin dar ningún error**. El SVG va siempre como hermano del `<span>` traducido:
+
+```html
+BIEN : <p class="fila"><svg class="i">…</svg><span data-en="…" data-es="…">…</span></p>
+MAL  : <p data-en="…" data-es="…"><svg>…</svg>texto</p>
+```
+
+Se comprueba contando `document.querySelectorAll('svg').length` antes y después de varios
+ciclos EN → ES → EN. Tiene que dar el mismo número.
+
+### Cómo revisar el móvil de verdad
+
+Chrome headless **impone un ancho mínimo de ventana** (~500px): pedir `--window-size=390,…`
+da una captura de 390px de una página maquetada a 500, y parece un desborde que no existe.
+Para un viewport real de 390 se usa `_movil.html`, un andamio con un `<iframe>` de 390px
+dentro de una ventana grande. Está en `.gitignore` a propósito: es una herramienta, no parte
+del sitio.
+
 ## El idioma
 
 **Ingles por defecto**, espanol a un clic, y la eleccion se recuerda en el navegador.
