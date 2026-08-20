@@ -11,6 +11,25 @@ Pagina estatica para GitHub Pages. Sin build: son ficheros HTML, un CSS y un JS.
 | `terms.html` | Terminos y condiciones |
 | `assets/idioma.js` | El conmutador EN / ES |
 | `assets/styles.css` | Los estilos, con la paleta de la propia app |
+| `assets/hero.jpg` | La ilustracion de la portada, 1066x896 |
+| `assets/icono.png` | El icono de la app, usado tambien como favicon |
+
+### Si cambias la ilustracion de la portada
+
+Dos cosas, y las dos han fallado ya:
+
+1. **Cambia `width` y `height` del `<img>` para que coincidan con el archivo nuevo.** No son
+   decoracion: le dicen al navegador la proporcion antes de descargarla, y con ellos mal el
+   texto de al lado da un salto al terminar de cargar.
+2. **Comprueba que sigue el `height: auto` del CSS.** Sin el, el navegador usa el atributo
+   `height` como alto real y la imagen sale estirada. Paso el 2026-08-19: proporcion original
+   1,79 y pintada 0,30.
+
+La proporcion comoda aqui esta entre 4:3 y 1:1. El contenedor mide 339 px en movil, **817 px
+en tableta —que es el mas ancho—** y 501 px en un escritorio de 1920: una imagen 16:9 se queda
+como una tira y una vertical empuja el resto de la pagina fuera de la primera pantalla.
+Y guardala en JPEG salvo que necesite transparencia: la actual pasaba de 1.073 KB en PNG a
+159 KB en JPEG de calidad 92 sin diferencia visible.
 
 ## El idioma
 

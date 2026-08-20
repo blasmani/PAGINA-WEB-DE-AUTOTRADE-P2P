@@ -10,7 +10,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="AutoTrade P2P — Your Binance P2P desk, on autopilot">
 <meta property="og:description" content="Replies to your order chat, keeps your records in order and defends your rank. Runs entirely on your own PC.">
-<meta property="og:image" content="assets/hero-en.png">
+<meta property="og:image" content="https://autotradep2p.com/assets/hero.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -62,11 +62,29 @@
       <p class="nota-boton" data-en="⏳ Currently in Microsoft Store review. The download link goes live the moment it is approved." data-es="⏳ Ahora mismo en revisión de Microsoft Store. El enlace de descarga funcionará en cuanto la aprueben.">⏳ Currently in Microsoft Store review. The download link goes live the moment it is approved.</p>
     </div>
 
-    <img class="portada__imagen" src="assets/hero-en.png"
-         data-img-en="assets/hero-en.png" data-img-es="assets/hero-es.png"
-         data-alt-en="AutoTrade P2P: instant replies, chat and rank defence"
-         data-alt-es="AutoTrade P2P: respuestas instantáneas, chat y defensa del puesto"
-         alt="AutoTrade P2P" width="1376" height="768">
+    <!--
+      `width` y `height` TIENEN que coincidir con el archivo (1066x896).
+      Le dicen al navegador la proporcion antes de descargar la imagen, asi el texto no da un
+      salto cuando termina de cargar. Si se cambia la imagen y no se cambian estos numeros,
+      vuelve el salto — y si ademas falta `height: auto` en el CSS, la imagen sale estirada,
+      que es lo que paso con la anterior.
+
+      Es .jpg y no .png a proposito: la ilustracion venia en PNG de 1.073 KB y el PNG guarda
+      cada pixel exacto, que aqui no sirve de nada porque es un render con degradados y sin
+      transparencia (canal alfa medido: opaco entero). En JPEG de calidad 92 sin submuestreo
+      de color pesa 159 KB — 6,7 veces menos — y comparando el peor bloque de 100x100 pixeles
+      ampliado 4 veces no se distingue del original. Eso son casi 900 KB que un comerciante
+      con datos moviles ya no descarga.
+
+      Los dos idiomas apuntan al mismo archivo: esta ilustracion es casi toda visual y su
+      poco texto esta en ingles. Cuando haya una version en espanol, se cambia solo
+      `data-img-es` y el conmutador ya la recoge.
+    -->
+    <img class="portada__imagen" src="assets/hero.jpg"
+         data-img-en="assets/hero.jpg" data-img-es="assets/hero.jpg"
+         data-alt-en="A robot answering the order chat while the ad holds its rank in the advertisers list"
+         data-alt-es="Un robot respondiendo el chat de las órdenes mientras el anuncio mantiene su puesto en la lista"
+         alt="AutoTrade P2P" width="1066" height="896">
   </div>
 </section>
 
