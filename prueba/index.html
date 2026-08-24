@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prueba de la nube — AutoTrade P2P</title>
+<!--
+  NOINDEX a propósito. Esto no es producto: es un banco de pruebas para comprobar que la
+  cadena entera funciona —entrar, identificarse, y que la base solo devuelva lo tuyo— antes
+  de que exista la aplicación de verdad. No debe aparecer en un buscador ni confundirse con
+  autotradep2p.com.
+-->
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="../assets/icono.png">
+<style>
+  /*
+   * Paleta medida sobre el Portal del Comerciante de Binance, la misma que usa la app.
+   * Se copia aquí en vez de importar la hoja del sitio porque esta página tiene que poder
+   * moverse a otro sitio sin arrastrar nada.
+   */
+  :root {
+    --fondo: #07090c; --marco: #0b0e11; --superficie: #14171c;
+    --linea: #21262e; --linea-fuerte: #2b3139;
+    --texto: #eaecef; --texto-2: #b7bdc6; --texto-3: #848e9c;
+    --amarillo: #fcd535; --sobre-amarillo: #202630;
+    --verde: #0ecb81; --rojo: #f6465d;
+    --mono: 'Cascadia Mono', Consolas, ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--fondo); color: var(--texto);
+    font: 400 16px/1.6 'Segoe UI Variable Text', 'Segoe UI', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .caja { max-width: 860px; margin: 0 auto; padding: 32px 20px 80px; }
+  h1 { font-size: 1.5rem; margin: 0 0 4px; letter-spacing: -0.02em; }
+  .sub { color: var(--texto-3); font-size: 0.8125rem; margin: 0 0 28px; }
+  .panel {
+    background: var(--superficie); border: 1px solid var(--linea-fuerte);
+    border-radius: 12px; padding: 20px; margin-bottom: 16px;
+  }
+  .panel h2 {
+    font: 500 12px/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--texto-3); margin: 0 0 16px;
+  }
+  label { display: block; font-size: 0.8125rem; color: var(--texto-2); margin-bottom: 6px; }
+  input {
+    width: 100%; padding: 11px 12px; margin-bottom: 12px;
+    background: #0f1216; color: var(--texto);
+    border: 1px solid #606468; border-radius: 8px; font-size: 15px;
+  }
+  input:focus { outline: 2px solid var(--amarillo); outline-offset: 2px; border-color: transparent; }
+  button {
+    padding: 11px 18px; border-radius: 8px; border: 1px solid var(--linea-fuerte);
+    background: #1b1f26; color: var(--texto); font-size: 14px; font-weight: 600;
+    cursor: pointer; margin-right: 8px; margin-bottom: 8px;
+  }
+  button.principal { background: var(--amarillo); color: var(--sobre-amarillo); border-color: transparent; }
+  button:hover { border-color: #606468; }
+  button.principal:hover { background: #f5c211; }
+  button:disabled { opacity: 0.45; cursor: default; }
+  pre {
+    background: #0f1216; border: 1px solid var(--linea); border-radius: 8px;
+    padding: 12px; overflow-x: auto; font: 400 12.5px/1.6 var(--mono);
+    color: var(--texto-2); margin: 0; white-space: pre-wrap; word-break: break-word;
+  }
+  .fila { display: flex; gap: 10px; align-items: baseline; padding: 7px 0; border-top: 1px solid var(--linea); font-size: 14px; }
+  .fila:first-of-type { border-top: 0; }
+  .fila b { color: var(--texto-3); font: 500 11px/1.6 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; min-width: 150px; }
+  .ok { color: var(--verde); }
+  .mal { color: var(--rojo); }
+  .nota { font-size: 0.8125rem; color: var(--texto-3); margin-top: 12px; }
+  .oculto { display: none; }
+</style>
+</head>
+<body>
+<div class="caja">
+
+  <h1>Prueba de la nube</h1>
+  <p class="sub">
+    No es la aplicación. Es la comprobación de que la cadena entera funciona antes de
+    construirla encima: entrar, identificarse, y que la base devuelva <b>solo lo tuyo</b>.
+  </p>
+
+  <!-- ------------------------------------------------------------------ entrar -->
+  <div class="panel" id="panelEntrar">
+    <h2>Entrar</h2>
+    <label for="correo">Correo</label>
+    <input id="correo" type="email" autocomplete="username" placeholder="tu@correo.com">
+    <label for="clave">Contraseña</label>
+    <input id="clave" type="password" autocomplete="current-password" placeholder="mínimo 6 caracteres">
+    <button class="principal" id="btnEntrar">Entrar</button>
+    <button id="btnCrear">Crear cuenta</button>
+    <p class="nota">
+      Con correo y contraseña, que es lo que no depende de configurar nada fuera. El acceso
+      con Google llegará después.
+    </p>
+    <pre id="salidaEntrar" class="oculto"></pre>
+  </div>
+
+  <!-- ------------------------------------------------------------------ sesión -->
+  <div class="panel oculto" id="panelSesion">
+    <h2>Tu sesión</h2>
+    <div id="datosSesion"></div>
+    <div style="margin-top:16px">
+      <button id="btnSalir">Cerrar sesión</button>
+    </div>
+  </div>
+
+  <!-- --------------------------------------------------------------- lo tuyo -->
+  <div class="panel oculto" id="panelDatos">
+    <h2>Tus datos en la base</h2>
+    <div id="tusDatos"></div>
+    <div style="margin-top:16px">
+      <button id="btnApuntar">Apuntar algo en tu actividad</button>
+      <button id="btnModo">Cambiar el modo del bot</button>
+      <button id="btnRefrescar">Refrescar</button>
+    </div>
+    <pre id="salidaDatos" class="oculto"></pre>
+  </div>
+
+  <!-- --------------------------------------------------------- el aislamiento -->
+  <div class="panel oculto" id="panelAislamiento">
+    <h2>La prueba que importa</h2>
+    <p style="margin:0 0 14px;font-size:14px;color:var(--texto-2)">
+      El botón pide a la base <b>todas</b> las filas, sin filtrar por nadie. Si el aislamiento
+      funciona, la base devuelve solo las tuyas — no porque el navegador las filtre, sino
+      porque para él las demás no existen.
+    </p>
+    <button id="btnTodo">Pedir TODO sin filtrar</button>
+    <pre id="salidaTodo" class="oculto"></pre>
+  </div>
+
+</div>
+
+<script type="module">
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+
+/*
+ * La clave PUBLICABLE va aquí a la vista y no es un descuido: está pensada para eso. Lo que
+ * protege los datos no es esconderla, son las políticas de la base. Cualquiera puede coger
+ * esta clave y pedir la tabla de órdenes entera: le devolverá cero filas.
+ *
+ * La que NUNCA puede aparecer aquí es la `secret` / `service_role`, que SÍ se salta las
+ * políticas.
+ */
+const URL_SUPABASE = 'https://jbekcmulvttnyrmtgwng.supabase.co'
+const CLAVE_PUBLICA = 'sb_publishable_XdyV4iFwW4JDiYpw7GaECw_UXriLn78'
+
+const sb = createClient(URL_SUPABASE, CLAVE_PUBLICA)
+
+const $ = (id) => document.getElementById(id)
+const ver = (id, mostrar) => $(id).classList.toggle('oculto', !mostrar)
+
+function pintar(id, texto, error = false) {
+  const n = $(id)
+  n.textContent = texto
+  n.classList.remove('oculto')
+  n.style.color = error ? 'var(--rojo)' : 'var(--texto-2)'
+}
+
+function filas(destino, pares) {
+  $(destino).innerHTML = pares
+    .map(([k, v, clase]) => `<div class="fila"><b>${k}</b><span class="${clase || ''}">${v}</span></div>`)
+    .join('')
+}
+
+/* -------------------------------------------------------------------- entrar */
+
+$('btnCrear').addEventListener('click', async () => {
+  const { data, error } = await sb.auth.signUp({
+    email: $('correo').value.trim(),
+    password: $('clave').value,
+  })
+  if (error) return pintar('salidaEntrar', 'No se pudo crear: ' + error.message, true)
+  if (!data.session) {
+    return pintar(
+      'salidaEntrar',
+      'Cuenta creada. Supabase pide confirmar el correo antes de entrar:\n' +
+        'mira tu bandeja, o desactiva la confirmación en Authentication → Sign In / Providers.',
+    )
+  }
+  pintar('salidaEntrar', 'Cuenta creada y sesión abierta.')
+  await alEntrar()
+})
+
+$('btnEntrar').addEventListener('click', async () => {
+  const { error } = await sb.auth.signInWithPassword({
+    email: $('correo').value.trim(),
+    password: $('clave').value,
+  })
+  if (error) return pintar('salidaEntrar', 'No se pudo entrar: ' + error.message, true)
+  await alEntrar()
+})
+
+$('btnSalir').addEventListener('click', async () => {
+  await sb.auth.signOut()
+  location.reload()
+})
+
+/* --------------------------------------------------------------- al entrar */
+
+async function alEntrar() {
+  const { data: { user } } = await sb.auth.getUser()
+  if (!user) return
+
+  ver('panelEntrar', false)
+  ver('panelSesion', true)
+  ver('panelDatos', true)
+  ver('panelAislamiento', true)
+
+  filas('datosSesion', [
+    ['Correo', user.email],
+    ['Tu identificador', `<code style="font:12px var(--mono)">${user.id}</code>`],
+    ['Entraste', new Date(user.last_sign_in_at).toLocaleString('es-PE')],
+  ])
+
+  /*
+   * La fila de comerciante se crea desde el NAVEGADOR, con la sesión del usuario. Es la
+   * primera prueba de que la política de escritura funciona: `with check` solo deja poner
+   * `id = auth.uid()`, así que nadie puede crear la ficha de otro.
+   */
+  const { error } = await sb.from('comerciantes').upsert(
+    { id: user.id, nombre: user.email.split('@')[0], creado_en: Date.now() },
+    { onConflict: 'id' },
+  )
+  if (error) pintar('salidaDatos', 'Al crear tu ficha: ' + error.message, true)
+
+  await cargarDatos()
+}
+
+async function cargarDatos() {
+  const [com, ajustes, eventos, plantillas, ordenes] = await Promise.all([
+    sb.from('comerciantes').select('*'),
+    sb.from('ajustes').select('*'),
+    sb.from('eventos').select('*').order('momento', { ascending: false }).limit(5),
+    sb.from('plantillas').select('id'),
+    sb.from('ordenes').select('order_number'),
+  ])
+
+  const modo = (ajustes.data || []).find((a) => a.clave === 'bot_modo')?.valor ?? 'apagado'
+  const ultimos = (eventos.data || []).map((e) => `${e.origen}: ${e.mensaje}`).join('<br>') || '—'
+
+  filas('tusDatos', [
+    ['Tu ficha', com.data?.length === 1 ? 'creada' : `${com.data?.length ?? 0} filas`, 'ok'],
+    ['Modo del bot', modo],
+    ['Tus órdenes', ordenes.data?.length ?? 0],
+    ['Tus plantillas', plantillas.data?.length ?? 0],
+    ['Últimos apuntes', ultimos],
+  ])
+}
+
+$('btnRefrescar').addEventListener('click', cargarDatos)
+
+$('btnApuntar').addEventListener('click', async () => {
+  const { data: { user } } = await sb.auth.getUser()
+  const { error } = await sb.from('eventos').insert({
+    comerciante_id: user.id,
+    momento: Date.now(),
+    nivel: 'info',
+    origen: 'prueba',
+    mensaje: 'Apunte hecho desde el navegador a las ' + new Date().toLocaleTimeString('es-PE'),
+  })
+  if (error) return pintar('salidaDatos', 'No se pudo apuntar: ' + error.message, true)
+  pintar('salidaDatos', 'Apuntado. La base lo aceptó porque el comerciante eres tú.')
+  await cargarDatos()
+})
+
+$('btnModo').addEventListener('click', async () => {
+  const { data: { user } } = await sb.auth.getUser()
+  const { data } = await sb.from('ajustes').select('valor').eq('clave', 'bot_modo').maybeSingle()
+  const orden = ['apagado', 'ensayo', 'activo']
+  const siguiente = orden[(orden.indexOf(data?.valor ?? 'apagado') + 1) % 3]
+  const { error } = await sb
+    .from('ajustes')
+    .upsert({ comerciante_id: user.id, clave: 'bot_modo', valor: siguiente },
+            { onConflict: 'comerciante_id,clave' })
+  if (error) return pintar('salidaDatos', 'No se pudo cambiar: ' + error.message, true)
+  pintar('salidaDatos', `Modo guardado: ${siguiente}. Sobrevive a cerrar el navegador.`)
+  await cargarDatos()
+})
+
+/* ------------------------------------------------------------- el aislamiento */
+
+$('btnTodo').addEventListener('click', async () => {
+  const { data: { user } } = await sb.auth.getUser()
+
+  /*
+   * Sin un solo `where`. Se le pide a la base TODO lo que hay en cada tabla. Lo que llegue
+   * es lo que la base considera que este usuario puede ver.
+   */
+  const tablas = ['comerciantes', 'ordenes', 'mensajes', 'eventos', 'ajustes', 'plantillas']
+  const lineas = []
+  for (const t of tablas) {
+    const { data, error, count } = await sb.from(t).select('*', { count: 'exact' })
+    if (error) { lineas.push(`${t.padEnd(14)} error: ${error.message}`); continue }
+    const ajenas = (data || []).filter(
+      (f) => (f.comerciante_id ?? f.id) !== user.id,
+    ).length
+    lineas.push(
+      `${t.padEnd(14)} ${String(count ?? 0).padStart(4)} filas visibles   ` +
+        (ajenas === 0 ? 'ninguna es de otro' : `¡¡${ajenas} DE OTRO!!`),
+    )
+  }
+  lineas.push('')
+  lineas.push(
+    'Estas cifras son lo que la BASE deja ver, no lo que hay dentro.',
+    'Si algún día aparece una fila de otro comerciante aquí, el aislamiento está roto.',
+  )
+  pintar('salidaTodo', lineas.join('\n'))
+})
+
+/* Si ya había sesión, se entra directo. */
+sb.auth.getSession().then(({ data }) => { if (data.session) alEntrar() })
+</script>
+</body>
+</html>
