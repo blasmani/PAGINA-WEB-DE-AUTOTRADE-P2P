@@ -2,6 +2,28 @@
 
 Pagina estatica para GitHub Pages. Sin build: son ficheros HTML, un CSS y un JS.
 
+## El producto que vende esta web: DOS versiones vivas
+
+Esto es lo primero que hay que saber antes de escribir una sola frase en los HTML, porque
+casi todas las correcciones de esta web han salido de olvidarlo:
+
+| Version | Donde corre | Estado |
+|---|---|---|
+| **Web** — <https://app.autotradep2p.com/> | El motor y los datos, en servidores nuestros | **Disponible ya** |
+| **Windows** — Microsoft Store | Todo en la PC del usuario | **En certificacion** |
+
+No es que una sustituyera a la otra: **conviven, y el usuario elige**. Una frase que solo
+valga para una tiene que decir para cual —«en la version web» / «en la version de Windows»—,
+y esto vale igual para la portada que para los dos legales. La `privacy.html` §12 cuenta el
+caso de manual: se publico «todo se queda en tu PC» sin acotar, dejo de ser cierto de la web,
+y la correccion se paso de frenada dando por muerta la version de Windows —que es la que
+enlaza esa misma pagina desde su ficha de la Store—.
+
+Y lo que la app puede hacer de verdad manda sobre lo que aqui se prometa. Ejemplo medido: la
+portada prometio **CSV** hasta el 2026-08-25, y el boton de CSV se habia retirado de la app el
+2026-08-21. Hoy hay **dos descargas de Excel** y ninguna otra: la completa y la «Excel F»,
+reducida para pegar en el sistema de facturacion.
+
 ## Que hay aqui
 
 | Fichero | Que es |
@@ -90,11 +112,29 @@ es imposible de compartir: mandas un enlace, lo abren, y ven otra cosa.
 
 ## Pendiente de la certificacion
 
-`index.html` lleva un aviso temporal debajo del boton de descarga que dice que la app esta en
-revision de Microsoft Store. **Hay que borrar esa linea** en cuanto la app se publique: esta
-marcada con un comentario `AVISO TEMPORAL`. Hasta entonces el enlace
-`https://apps.microsoft.com/detail/9PL6F67SSZV8` devuelve 404, y prometer una descarga que no
-existe es peor que decir la verdad.
+> Esta seccion decia que habia que buscar un comentario **`AVISO TEMPORAL`** y dejar «solo el
+> boton de la Store». Las dos cosas son falsas desde el 2026-08-25: ese comentario ya no
+> existe —se llama `CANJE-STORE`— y dejar solo el boton de la Store seria borrar el enlace de
+> la app web, que es **la version que funciona hoy**. Se deja escrito para que nadie lo
+> «restaure».
+
+Mientras dure la certificacion, el enlace `https://apps.microsoft.com/detail/9PL6F67SSZV8`
+devuelve **404**. `index.html` tiene los dos puntos afectados marcados con el comentario
+**`CANJE-STORE`** (1 de 2 en la portada, 2 de 2 en la ficha de precio); se encuentran
+buscando esa palabra.
+
+El dia que Microsoft apruebe la ficha:
+
+- **Se borra** el chip «In Store certification», que va pegado al boton de la Store en la
+  portada.
+- **Se borran** las dos notas que dicen que la version de Windows sigue en certificacion: la
+  de debajo de los botones de la portada y la del pie de la ficha de precio.
+- **Se revisa** el «once approved» / «cuando la aprueben» de las filas *Trial*, *Billing* y
+  *Cancellation* de la ficha de precio, y el «still in certification» de `terms.html` §2 y de
+  `privacy.html` §12.
+- **NO se toca nada mas. Los dos botones se quedan**, y el de la app web va primero en el pie:
+  la web no es un parche mientras dura la certificacion, es una de las dos versiones del
+  producto.
 
 ## Dominio: autotradep2p.com
 

@@ -652,7 +652,8 @@ figcaption {
 }
 .tabla td { padding: 9px 0; border-top: 1px solid var(--linea); color: var(--texto-2); }
 .tabla td:last-child, .tabla th:last-child { text-align: right; font-variant-numeric: tabular-nums; color: var(--texto); }
-/* Bajo 560px se va la columna del método de pago. Nunca scroll horizontal. */
+/* Bajo 560px se va la columna «Tipo». Nunca scroll horizontal. (Decía «método de
+   pago»: esa columna se cambió por Tipo y el comentario se quedó atrás.) */
 @media (max-width: 560px) { .tabla .opcional { display: none; } }
 .tabla__chips { display: flex; gap: var(--e2); margin-top: var(--e4); }
 .tabla__chips .chip { padding: 6px 10px; }
