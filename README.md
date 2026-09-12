@@ -34,7 +34,7 @@ reducida para pegar en el sistema de facturacion.
 | `assets/idioma.js` | El conmutador EN / ES |
 | `assets/styles.css` | Los estilos, con la paleta de la propia app |
 | `assets/hero.jpg` | La ilustracion de la portada, 1066x896 |
-| `assets/icono.png` | El icono de la app, usado tambien como favicon |
+| `assets/icono.png` | El icono de la app, usado como favicon y en el pie. **En la cabecera ya no va** (2026-09-12, el dueno lo quito con la captura delante: solo el nombre) |
 
 ### Si cambias la ilustracion de la portada
 
