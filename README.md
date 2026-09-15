@@ -32,50 +32,60 @@ reducida para pegar en el sistema de facturacion.
 | `privacy.html` | Politica de privacidad |
 | `terms.html` | Terminos y condiciones |
 | `assets/idioma.js` | El conmutador EN / ES |
-| `assets/styles.css` | Los estilos, con la paleta de la propia app |
-| `assets/hero.jpg` | La ilustracion de la portada, 1066x896 |
-| `assets/icono.png` | El icono de la app, usado como favicon y en el pie. **En la cabecera ya no va** (2026-09-12, el dueno lo quito con la captura delante: solo el nombre) |
+| `assets/sitio.js` | 30 lineas: el filete de la cabecera al hacer scroll y «solo una pregunta abierta» en el FAQ. Sin el, la pagina funciona igual |
+| `assets/styles.css` | Los estilos del diseño «Marino sobre hielo» (abajo) |
+| `assets/og.png` | La imagen de la vista previa social (1200x630): la maqueta del ranking con la banda, rasterizada. **No hay ilustracion en la portada desde el 2026-09-15**: la imagen es el producto, en maquetas HTML |
+| `assets/icono.png` | El icono de la app, usado como favicon. **En la cabecera ya no va** (2026-09-12, el dueno lo quito con la captura delante: solo el nombre) |
 
-### Si cambias la ilustracion de la portada
+### Si cambias la portada, vuelve a generar `assets/og.png`
 
-Dos cosas, y las dos han fallado ya:
+La imagen social no se dibuja a mano: es una pagina de 1200x630 con la maqueta del ranking
+(el `_og.html` que se uso el 2026-09-14 esta en el historial del repositorio
+`autotradep2p-web-rediseno`), rasterizada con el Electron del monorepo
+(`herramientas/capturar-web.cjs`, ver la memoria «capturas web con Electron»). Chrome y Edge
+sin cabeza no escribieron nada en este equipo; el panel del navegador tampoco devuelve capturas.
 
-1. **Cambia `width` y `height` del `<img>` para que coincidan con el archivo nuevo.** No son
-   decoracion: le dicen al navegador la proporcion antes de descargarla, y con ellos mal el
-   texto de al lado da un salto al terminar de cargar.
-2. **Comprueba que sigue el `height: auto` del CSS.** Sin el, el navegador usa el atributo
-   `height` como alto real y la imagen sale estirada. Paso el 2026-08-19: proporcion original
-   1,79 y pintada 0,30.
+## El diseño: «Marino sobre hielo» (2026-09-15)
 
-La proporcion comoda aqui esta entre 4:3 y 1:1. El contenedor mide 339 px en movil, **817 px
-en tableta —que es el mas ancho—** y 501 px en un escritorio de 1920: una imagen 16:9 se queda
-como una tira y una vertical empuja el resto de la pagina fuera de la primera pantalla.
-Y guardala en JPEG salvo que necesite transparencia: la actual pasaba de 1.073 KB en PNG a
-159 KB en JPEG de calidad 92 sin diferencia visible.
+Sustituyo a «Mesa de Control» (2026-08-20, negro con el amarillo de Binance) porque el dueño lo
+vio **«un poco feo con esos colores, no se ve premium»** y pidio inspirarse en los colores de
+autop2p.dev y silver5ai.com. Lo que queda de aquel: la idea de fondo —esto toca dinero de
+verdad, lo premium es la **precision**, no el espectaculo—, cero emojis, iconos SVG de trazo.
 
-## El diseño: «Mesa de Control»
+Lo que define al nuevo, y conviene no romper sin querer:
 
-Rediseñado el 2026-08-20. El dueño pidió **premium estilo Apple**, **cero emojis** e
-**iconos premium en toda la página**. La idea que lo sostiene: esto es una herramienta que
-toca dinero de verdad, así que lo premium aquí es la **precisión**, no el espectáculo. Nada
-rebota, nada se levanta al pasar el ratón, nada late en bucle.
+1. **Lienzo claro gris frio (`#eef1f5`), tinta azul marino (`#0f1729`) y UN solo acento azul
+   (`#2f63e6`)**, que aparece solo donde se pulsa: boton primario, riel de la banda, anillo de
+   foco. El verde y el rojo son semanticos y solo viven dentro de las maquetas y de la banda
+   «Tres nunca, dos siempre». Ni negro ni amarillo.
+2. **Islas blancas de radio grande** (36 px en escritorio, 20 px en movil) sobre el lienzo, y
+   **una sola isla oscura** (`#0b1220`), la del motor de precios: el contraste ocurre una vez.
+   La isla oscura redefine los tokens (`--tinta`, `--linea`, `--ok`…), asi que lo que hay
+   dentro se pinta con las mismas reglas; si anades un color, redefinelo ahi tambien o saldra
+   ilegible (el verde de fuera daba 2,3:1 dentro).
+3. **Instrument Sans + Geist Mono**, dos familias de Google Fonts. Titular de 72 px en
+   escritorio y 40 en movil; rotulos mono de 12 px, que es el **suelo de todo el sitio**
+   (tambien dentro de las maquetas), y **44 px** para cualquier cosa que se pueda pulsar. La
+   unica excepcion es el enlace `t.me/…` dentro de una frase del FAQ (WCAG 2.5.8 exceptua los
+   enlaces en linea).
+4. **La imagen es el producto.** No hay robot ni capturas: maquetas en HTML y CSS del ranking
+   con la banda de puestos, del chat de una orden, del historial, de los disparadores, de la
+   regla del motor, de tres instantes del ranking y de los cuatro pasos. Se traducen con el
+   conmutador, pesan cero bytes y **todas llevan el rotulo «Ilustracion · datos de ejemplo»**.
+   Los datos son ficticios: apodos inventados, iniciales, «Transferencia» y «Billetera» como
+   metodos, sin bancos ni nombres de personas, y **solo marcadores que la app tenga de verdad**
+   (`{nombre}`; un `{amount}` inventado lo tumbo la revision).
+5. **Nada rebota, nada se levanta al pasar el raton, nada late en bucle.** Los hover y los
+   `:active` cambian color, no posicion. El revelado al hacer scroll es CSS puro
+   (`animation-timeline: view()`), dentro de `@supports` **y** de `prefers-reduced-motion`:
+   con un observador de JavaScript, si no arranca, el contenido se queda invisible sin error.
+6. **Movil sin menu**: por debajo de 900 px las anclas de la cabecera se van y aparece un
+   indice de secciones bajo la franja de hechos (`.indice`); `scroll-padding-top` en `html`
+   deja el rotulo a la vista al saltar por ancla bajo la cabecera pegada.
 
-Cuatro reglas que conviene no romper sin querer:
-
-1. **El amarillo relleno aparece UNA vez por pantalla.** Antes estaba a la vez en el botón,
-   en el conmutador de idioma y en los cuatro círculos de los pasos. Cuatro acentos a la vez
-   no son un acento. El conmutador activo se marca ahora con un subrayado de 2px.
-2. **Los paneles separan celdas con `border-top` / `border-left`, nunca con `gap: 1px`.**
-   Con `gap` de 1px, en Windows al 125 % o 150 % de escalado unos filetes salen a 1 píxel y
-   otros a 2, y el panel se ve descuadrado.
-3. **Suelo de 12px** para cualquier texto, y de **44px** para cualquier cosa que se pueda
-   pulsar. La única excepción es el enlace `t.me/…` que va dentro de una frase del FAQ: WCAG
-   2.5.8 exceptúa expresamente los enlaces en línea.
-4. **El revelado al hacer scroll es CSS puro** (`animation-timeline: view()`), metido dentro
-   de `@supports` **y** de `prefers-reduced-motion: no-preference`. Con un observador de
-   JavaScript, si el observador no arranca el contenido se queda invisible y no hay ningún
-   error en consola. Este proyecto ya tiene tres causas documentadas de pantalla en blanco
-   silenciosa; no hacía falta una cuarta.
+Salio de un panel de tres direcciones de diseño juzgadas por tres revisores y de una revision
+adversaria (contenido, idiomas, accesibilidad, tecnica, diseño) antes de publicarse. Las
+capturas de comprobacion se hacen con Electron a 1366, 820 y 390 px en los dos idiomas.
 
 ### El icono nunca va dentro de un texto traducido
 
